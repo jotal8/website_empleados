@@ -32,3 +32,29 @@
   border: 1px solid rgba(var(--callout-border-rgb), 0.3);
   border-radius: var(--border-radius);
 }
+
+
+.formLogin{
+  position:relative;
+  font-size:30px;
+  height:400px;
+}
+
+.formLogin p{
+  position:relative;
+  display: block;
+}
+
+.buttonContainer{
+  position:relative;
+  display: table;
+  padding: 1rem;
+  margin:auto;
+}
+
+.ingresarBtn{
+  width:200px;
+  height:60px;
+  font-size:30px;
+  cursor: pointer;
+}
