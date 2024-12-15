@@ -1,0 +1,31 @@
+
+.formLogin{
+    position:relative;
+    font-size:30px;
+    height:400px;
+  }
+  
+  .formLogin p{
+    position:relative;
+    display: block;
+  }
+  
+  .buttonContainer{
+    position:relative;
+    display: table;
+    padding: 1rem;
+    margin:auto;
+  }
+  
+  .ingresarBtn{
+    width:200px;
+    height:60px;
+    font-size:30px;
+    cursor: pointer;
+  }
+  
+  .formFields{
+    font-size: 25px;
+    height:40px;
+    text-align:center;
+  }

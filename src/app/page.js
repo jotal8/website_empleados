@@ -1,8 +1,13 @@
 import Image from 'next/image'
 import styles from './page.module.css'
+import { Form } from './components/form';
 
 export default function Home() {
   const a = 2;
+
+  const onSubmit = (event) => {
+    event.preventDefault();
+  };
 
   if(a == 1){
     return (
@@ -16,21 +21,9 @@ export default function Home() {
     return (
       <main className={styles.main}>
         <div className={styles.description}>
-          Estas loggeado!!!Bienvenidos al sistema de gestión de empleados!
+          Bienvenidos al sistema de gestión de empleados!
         </div>
-        <form className={styles.formLogin}>
-            <p>
-              <input type="text" name="email" />
-            </p>
-
-            <p>
-              <input type="password" name="password" />
-            </p>
-  
-            <div className={styles.buttonContainer}>
-              <button className={styles.ingresarBtn}>Ingresar</button>
-            </div>
-          </form>
+        <Form />
       </main>
     )
   }
