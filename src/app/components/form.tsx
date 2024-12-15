@@ -1,14 +1,16 @@
-// app/components/TodoForm.tsx
 'use client'
 
 import React, { useState } from 'react';
 import styles from './form.module.css';
+import { setSession, LOGIN } from '../services/session';
+import { useDispatch } from 'react-redux';
 
 
 const Form = () => {
+   const [responseText, setResponseText] = useState('');
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
-
+   const dispatch = useDispatch();
 
   const onSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
@@ -30,7 +32,12 @@ const Form = () => {
         }
 
         const data = await response.json();
-        console.log('Respuesta:', data);
+        setResponseText(data.message);
+
+        if(data.success){
+          dispatch(setSession(data.token));
+          dispatch(LOGIN());
+        }
     } catch (error) {
         console.error('Error en la solicitud:', error);
     }
@@ -57,7 +64,9 @@ const Form = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 />
             </p>
-  
+            <p className={styles.responseText}>
+              {responseText}
+            </p>
             <div className={styles.buttonContainer}>
               <button className={styles.ingresarBtn}>Ingresar</button>
             </div>

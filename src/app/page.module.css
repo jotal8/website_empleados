@@ -12,9 +12,25 @@
   justify-content: center;
   align-items: center;
   font-size: 1.2rem;
-  width: 100%;
+  width: 350px;
   z-index: 2;
   margin:60px;
   font-family: var(--font-mono);
   text-align:center;
+}
+
+.exitButton{
+  position:relative;
+  margin:auto;
+  width:100px;
+  height:40px;
+  background:#ebebeb;
+  text-align:center;
+  padding:10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+
+.exitButton:hover{
+  font-weight: bold;
 }
