@@ -19,7 +19,7 @@ export default function Content() {
   const name = useSelector((state) => state.session.name);
   const rol = useSelector((state) => state.session.rol);
 
-  if(stateSession === 1){
+  if(stateSession == 1){
     if(rol === 'Administrador'){
       return (
         <div> 
