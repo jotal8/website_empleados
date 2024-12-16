@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  stateSession: localStorage.getItem('stateSession') ? localStorage.getItem('stateSession') : '0',
+  stateSession: Boolean(localStorage.getItem('stateSession')) ? localStorage.getItem('stateSession') : 0,
   token: localStorage.getItem('token') || null,
   rol: localStorage.getItem('rol') ? localStorage.getItem('rol') : '',
   name: localStorage.getItem('name') ? localStorage.getItem('name') : ''
@@ -12,8 +12,8 @@ const sessionSlice = createSlice({
   initialState,
   reducers: {
     LOGIN: (state) => {
-      state.stateSession = '1';
-      localStorage.setItem('stateSession', '1');
+      state.stateSession = 1;
+      localStorage.setItem('stateSession', 1);
     },
     LOGOUT: (state) => {
       state.stateSession = '0';
