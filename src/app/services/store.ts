@@ -1,4 +1,3 @@
-
 import { configureStore } from '@reduxjs/toolkit';
 import sessionReducer from './session';
 import modalReducer from './modal';

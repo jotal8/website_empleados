@@ -9,11 +9,11 @@ import { SHOW, setId } from './../../services/modal';
 const EmpleadoList = () => {
   const token = useSelector((state) => state.session.token);
   const stateModal = useSelector((state) => state.modal.stateModal);
-  const [empleados, setEmpleados] = useState<any[]>([]);
+  const [empleados, setEmpleados] = useState([]);
 
   const dispatch = useDispatch();
 
-  function abrirModal(id:number){
+  function abrirModal(id){
     dispatch(setId(id));
     dispatch(SHOW());
   }
@@ -51,7 +51,7 @@ const EmpleadoList = () => {
     }
   }, [stateModal]);
 
-  function deleteUser(id:number){
+  function deleteUser(id){
     const sendRequestToDelete = async () => {
       try {
         const response = await fetch(`http://localhost:3001/api/usuario/${id}`, {

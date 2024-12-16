@@ -13,12 +13,12 @@ function FormUsuario(){
     const token = useSelector((state) => state.session.token);
     const id = useSelector((state) => state.modal.id);
 
-    const [nombres, setNombres] = useState<any>('');
-    const [apellidos, setApellidos] = useState<any>('');
-    const [correo, setCorreo] = useState<any>('');
-    const [nacimiento, setNacimiento] = useState<any>('');
-    const [cargo, setCargo] = useState<any>('');
-    const [roles, setRoles] = useState<any[]>([]);
+    const [nombres, setNombres] = useState('');
+    const [apellidos, setApellidos] = useState('');
+    const [correo, setCorreo] = useState('');
+    const [nacimiento, setNacimiento] = useState('');
+    const [cargo, setCargo] = useState('');
+    const [roles, setRoles] = useState([]);
 
 
     if(id){

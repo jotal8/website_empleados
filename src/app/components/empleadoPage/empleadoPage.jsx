@@ -10,14 +10,14 @@ import { rolList } from './../../services/rolList';
 const EmpleadoPage = () => {
   const id = localStorage.getItem('id');
 
-  const [nombres, setNombres] = useState<any>('');
-  const [apellidos, setApellidos] = useState<any>('');
-  const [correo, setCorreo] = useState<any>('');
-  const [nacimiento, setNacimiento] = useState<any>('');
-  const [cargo, setCargo] = useState<any>('');
+  const [nombres, setNombres] = useState('');
+  const [apellidos, setApellidos] = useState('');
+  const [correo, setCorreo] = useState('');
+  const [nacimiento, setNacimiento] = useState('');
+  const [cargo, setCargo] = useState('');
   const token = useSelector((state) => state.session.token);
-  const [roles, setRoles] = useState<any[]>([]);
-  const [message, setMessage] = useState<any>('');
+  const [roles, setRoles] = useState([]);
+  const [message, setMessage] = useState('');
 
   useEffect(() => {
     const getRoles = async () => {
