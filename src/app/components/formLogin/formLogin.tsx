@@ -1,12 +1,14 @@
 'use client'
 
 import React, { useState } from 'react';
-import styles from './form.module.css';
-import { setSession, LOGIN } from '../services/session';
+import styles from './formLogin.module.css';
+import { setSession, setRol, setName, LOGIN } from '../../services/session';
 import { useDispatch } from 'react-redux';
 
-
-const Form = () => {
+/**
+ * Contiene el formulario para iniciar sesion
+ */
+const FormLogin = () => {
    const [responseText, setResponseText] = useState('');
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
@@ -35,7 +37,10 @@ const Form = () => {
         setResponseText(data.message);
 
         if(data.success){
+          localStorage.setItem('id', data.data.id);
           dispatch(setSession(data.token));
+          dispatch(setRol(data.data.rol));
+          dispatch(setName(data.data.nombre));
           dispatch(LOGIN());
         }
     } catch (error) {
@@ -52,6 +57,7 @@ const Form = () => {
                 className={styles.formFields} 
                 placeholder="Correo" 
                 onChange={(e) => setEmail(e.target.value)} 
+                required
                 />
             </p>
 
@@ -62,6 +68,7 @@ const Form = () => {
                 className={styles.formFields} 
                 placeholder="Contraseña" 
                 onChange={(e) => setPassword(e.target.value)}
+                required
                 />
             </p>
             <p className={styles.responseText}>
@@ -74,4 +81,4 @@ const Form = () => {
   );
 };
 
-export { Form };
+export { FormLogin };

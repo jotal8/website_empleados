@@ -1,0 +1,28 @@
+.formFields{
+    font-size: 22px;
+    height:40px;
+    padding:12px;
+    text-align:left;
+}
+.formFields>span{
+    font-size: 18px;
+}
+.tableEmpleado{
+    width: 100%;
+    margin: 20px;
+    border: 1px solid #c5b9b9;
+    border-collapse: collapse;
+}
+
+.select{
+    position:relative;
+    margin:30px;
+}
+
+.message{
+    width: 100%;
+    text-align: center;
+    margin:auto;
+    color:gray;
+    padding:12px;
+}
