@@ -25,3 +25,10 @@
 .button:hover{
     font-weight: bold;
 }
+
+.filtro{
+    width:100%;
+    padding:6px;
+    text-align:center;
+    margin-top:10px;
+}

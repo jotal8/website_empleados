@@ -10,6 +10,7 @@ const EmpleadoList = () => {
   const token = useSelector((state) => state.session.token);
   const stateModal = useSelector((state) => state.modal.stateModal);
   const [empleados, setEmpleados] = useState([]);
+  const [search, setSearch] = useState();
 
   const dispatch = useDispatch();
 
@@ -82,32 +83,48 @@ const EmpleadoList = () => {
 
       sendRequestToDelete();
   }
-    
+
+  const searched = empleados.filter(empleado => {
+      const empleadoText = empleado.nombres.toLowerCase();
+      const searchText = search ? search.toLowerCase() : '';
+      return empleadoText.includes(searchText);
+  });
+
   return (
-        <table border="1" className={styles.tableEmpleados}>
-          <thead>
-            <tr>
-            <th>Nombres</th><th>Apellidos</th><th>Cargo</th><th>Correo</th><th>Fecha de Nacimiento</th><th colSpan="2"> Acciones </th></tr>      
-          </thead>
-            <tbody>
-              {empleados.map((empleado, index) => {
-                if(empleado.rol=='Administrador'){
-                  return;
-                }
-                return (
-                  <tr key={index} className={styles.empleadoCard}>
-                    <td className={styles.row}>{empleado.nombres}</td>
-                    <td className={styles.row}>{empleado.apellidos}</td>
-                    <td className={styles.row}>{empleado.cargo}</td>
-                    <td className={styles.row}>{empleado.correo}</td>
-                    <td className={styles.row}>{empleado.nacimiento}</td>
-                    <td className={styles.button} title="Edita el empleado"  onClick={()=>{abrirModal(empleado.id)}}>Editar</td>
-                    <td className={styles.button} title="Elimina el empleado" onClick={() => deleteUser(empleado.id)}>Eliminar</td>
-                  </tr>
-                );
-              })}
-            </tbody>
-        </table>
+        <div>
+            <div>
+              <input 
+                placeholder='Aqui puedes filtrar!' 
+                className={styles.filtro}
+                value={search} 
+                onChange={(event) => {setSearch(event.target.value);}}
+                />
+              </div>
+            <table border="1" className={styles.tableEmpleados}>
+              <thead>
+                <tr>
+                <th>Nombres</th><th>Apellidos</th><th>Cargo</th><th>Correo</th><th>Fecha de Nacimiento</th><th colSpan="2"> Acciones </th></tr>      
+              </thead>
+                <tbody>
+                  {searched.map((empleado, index) => {
+                    if(empleado.rol=='Administrador'){
+                      return;
+                    }
+                    return (
+                      <tr key={index} className={styles.empleadoCard}>
+                        <td className={styles.row}>{empleado.nombres}</td>
+                        <td className={styles.row}>{empleado.apellidos}</td>
+                        <td className={styles.row}>{empleado.cargo}</td>
+                        <td className={styles.row}>{empleado.correo}</td>
+                        <td className={styles.row}>{empleado.nacimiento}</td>
+                        <td className={styles.button} title="Edita el empleado"  onClick={()=>{abrirModal(empleado.id)}}>Editar</td>
+                        <td className={styles.button} title="Elimina el empleado" onClick={() => deleteUser(empleado.id)}>Eliminar</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+          </div>
   );
 };
 
