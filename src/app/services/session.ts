@@ -1,10 +1,18 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+
+const getLocalStorageItem = (key: string, defaultValue: any) => {
+  if(typeof localStorage !== 'undefined') 
+    {
+      return localStorage.getItem(key) || defaultValue;
+    }
+    return defaultValue;
+}
 
 const initialState = {
-  stateSession: localStorage.getItem('stateSession') ? localStorage.getItem('stateSession') : 0,
-  token: localStorage.getItem('token') || null,
-  rol: localStorage.getItem('rol') ? localStorage.getItem('rol') : '',
-  name: localStorage.getItem('name') ? localStorage.getItem('name') : ''
+  stateSession: getLocalStorageItem('stateSession', 0),
+  token: getLocalStorageItem('token', null),
+  rol: getLocalStorageItem('rol', ''),
+  name: getLocalStorageItem('name', '')
 };
 
 const sessionSlice = createSlice({
@@ -13,27 +21,37 @@ const sessionSlice = createSlice({
   reducers: {
     LOGIN: (state) => {
       state.stateSession = 1;
-      localStorage.setItem('stateSession', 1);
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem('stateSession', '1');
+      }
     },
     LOGOUT: (state) => {
       state.stateSession = 0;
       state.token = null;
-      localStorage.setItem('stateSession',state.stateSession);
-      localStorage.setItem('token', state.token);
-      localStorage.setItem('rol', '');
-      localStorage.setItem('name', '');
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem('stateSession',state.stateSession);
+        localStorage.setItem('token', state.token);
+        localStorage.setItem('rol', '');
+        localStorage.setItem('name', '');
+      }
     },
-    setSession: (state, action) => {
+    setSession: (state, action: PayloadAction<string>) => {
       state.token = action.payload;
-      localStorage.setItem('token', action.payload);
+      if(typeof localStorage !== 'undefined'){
+        localStorage.setItem('token', action.payload);
+      }
     },
-    setRol: (state, action) => {
+    setRol: (state, action: PayloadAction<string>) => {
       state.rol = action.payload;
-      localStorage.setItem('rol', action.payload);
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem('rol', action.payload);
+      }
     },
-    setName: (state, action) => {
+    setName: (state, action: PayloadAction<string>) => {
       state.name = action.payload;
-      localStorage.setItem('name', action.payload);
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem('name', action.payload);
+      }
     },
   },
 });

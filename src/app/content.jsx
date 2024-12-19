@@ -1,5 +1,6 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import Image from 'next/image'
 import styles from './page.module.css'
 import { FormLogin } from './components/formLogin/formLogin';
@@ -14,10 +15,19 @@ import { BtnLogout } from './components/btnLogout/btnLogout';
  * Contenedor de la pantalla principal de la aplicacion
  */
 export default function Content() {
+  const [isClient, setIsClient] = useState(false);
   const stateSession = useSelector((state) => state.session.stateSession);
   const stateModal = useSelector((state) => state.modal.stateModal);
   const name = useSelector((state) => state.session.name);
   const rol = useSelector((state) => state.session.rol);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    return null;
+  }
 
   if(stateSession == 1){
     if(rol === 'Administrador'){
